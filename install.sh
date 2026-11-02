@@ -7,9 +7,23 @@
 # 效果: 把选定 skill 装到本机已存在的 Agent skills 目录（zcode / claude / codex）
 set -euo pipefail
 
-REPO_RAW="${GFCH_REPO_RAW:-https://raw.githubusercontent.com/ZMKC404/gfch.skill/main}"
+REPO_RAW="${GFCH_REPO_RAW:-}"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
+
+# 多源自动回退：raw.githubusercontent 直连失败时换镜像（jsdelivr fastly → ghproxy）
+if [ -z "$REPO_RAW" ]; then
+  for base in \
+    "https://raw.githubusercontent.com/ZMKC404/gfch.skill/main" \
+    "https://fastly.jsdelivr.net/gh/ZMKC404/gfch.skill@main" \
+    "https://ghproxy.net/https://raw.githubusercontent.com/ZMKC404/gfch.skill/main"; do
+    if curl -fsSL --max-time 10 "$base/skills/gefei/SKILL.md" -o "$TMP/probe.md" 2>/dev/null; then
+      REPO_RAW="$base"; break
+    fi
+  done
+  [ -n "$REPO_RAW" ] || { echo "❌ 所有下载源均不可达，可设 GFCH_REPO_RAW 指定镜像"; exit 1; }
+fi
+echo "下载源: $REPO_RAW"
 
 SELECT="${1:-all}"
 case "$SELECT" in

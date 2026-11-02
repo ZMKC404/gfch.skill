@@ -15,6 +15,13 @@
 curl -fsSL https://raw.githubusercontent.com/ZMKC404/gfch.skill/main/install.sh | bash
 ```
 
+raw.githubusercontent 直连不通时（网络环境原因），任选一个镜像入口，install.sh 内部也会自动回退下载源：
+
+```bash
+curl -fsSL https://fastly.jsdelivr.net/gh/ZMKC404/gfch.skill@main/install.sh | bash
+curl -fsSL https://ghproxy.net/https://raw.githubusercontent.com/ZMKC404/gfch.skill/main/install.sh | bash
+```
+
 只装其中一个：
 
 ```bash
