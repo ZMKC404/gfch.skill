@@ -11,19 +11,25 @@ REPO_RAW="${GFCH_REPO_RAW:-}"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
-# 多源自动回退：raw.githubusercontent 直连失败时换镜像（jsdelivr fastly → ghproxy）
-if [ -z "$REPO_RAW" ]; then
-  for base in \
-    "https://raw.githubusercontent.com/ZMKC404/gfch.skill/main" \
-    "https://fastly.jsdelivr.net/gh/ZMKC404/gfch.skill@main" \
-    "https://ghproxy.net/https://raw.githubusercontent.com/ZMKC404/gfch.skill/main"; do
-    if curl -fsSL --max-time 10 "$base/skills/gefei/SKILL.md" -o "$TMP/probe.md" 2>/dev/null; then
-      REPO_RAW="$base"; break
+# 下载源列表：raw 直连失败时逐文件自动换镜像（jsdelivr fastly → ghproxy）
+BASES=(
+  "https://raw.githubusercontent.com/ZMKC404/gfch.skill/main"
+  "https://fastly.jsdelivr.net/gh/ZMKC404/gfch.skill@main"
+  "https://ghproxy.net/https://raw.githubusercontent.com/ZMKC404/gfch.skill/main"
+)
+[ -n "$REPO_RAW" ] && BASES=("$REPO_RAW")
+
+# fetch <repo相对路径> <本地目标文件>：逐源重试，全失败返回 1
+fetch() {
+  local rel="$1" dest="$2" base
+  for base in "${BASES[@]}"; do
+    if curl -fsSL --retry 2 --max-time 20 "$base/$rel" -o "$dest" 2>/dev/null; then
+      return 0
     fi
   done
-  [ -n "$REPO_RAW" ] || { echo "❌ 所有下载源均不可达，可设 GFCH_REPO_RAW 指定镜像"; exit 1; }
-fi
-echo "下载源: $REPO_RAW"
+  echo "❌ 下载失败: $rel（所有源均不可达，可设 GFCH_REPO_RAW 指定镜像）"
+  return 1
+}
 
 SELECT="${1:-all}"
 case "$SELECT" in
@@ -36,11 +42,11 @@ install_skill() {
   local refs=("$@")
   echo "⬇️  下载 $name ..."
   mkdir -p "$TMP/$name/references" "$TMP/$name/assets"
-  curl -fsSL "$REPO_RAW/skills/$name/SKILL.md" -o "$TMP/$name/SKILL.md"
+  fetch "skills/$name/SKILL.md" "$TMP/$name/SKILL.md" || exit 1
   for f in "${refs[@]}"; do
-    curl -fsSL "$REPO_RAW/skills/$name/references/$f.md" -o "$TMP/$name/references/$f.md"
+    fetch "skills/$name/references/$f.md" "$TMP/$name/references/$f.md" || exit 1
   done
-  curl -fsSL "$REPO_RAW/skills/$name/assets/style-checklist.md" -o "$TMP/$name/assets/style-checklist.md"
+  fetch "skills/$name/assets/style-checklist.md" "$TMP/$name/assets/style-checklist.md" || exit 1
   if ! grep -q "^name: $name" "$TMP/$name/SKILL.md" 2>/dev/null; then
     echo "❌ $name/SKILL.md 校验失败，安装中止"; exit 1
   fi
