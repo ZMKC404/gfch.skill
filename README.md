@@ -22,6 +22,12 @@ curl -fsSL https://fastly.jsdelivr.net/gh/ZMKC404/gfch.skill@main/install.sh | b
 curl -fsSL https://ghproxy.net/https://raw.githubusercontent.com/ZMKC404/gfch.skill/main/install.sh | bash
 ```
 
+要锁定版本（镜像对 @main 有分钟级缓存，刚发新版时可改用 tag 入口，永不缓存过期）：
+
+```bash
+curl -fsSL https://fastly.jsdelivr.net/gh/ZMKC404/gfch.skill@v1.0/install.sh | bash
+```
+
 只装其中一个：
 
 ```bash
