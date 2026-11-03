@@ -49,6 +49,9 @@ skills/gefei/        SKILL.md（最小路由器）+ references/6 + assets/自检
 skills/chuhai/       SKILL.md（最小路由器）+ references/6 + assets/自检表
 corpus/gefei/        canonical/chunks.jsonl（552 篇全文）+ index.md + 图片索引与实读转写 + 台账
 corpus/chuhai/       canonical/chunks.jsonl（12 篇全文）+ index.md + 台账
+corpus/chatlog/      群聊 25,323 条消息（哥飞 3,854 条，2025-08~12 实战口径层）
+corpus/robin/        罗宾出海 SOP 4 件（话术/邮件/合同/SOP 总纲）
+corpus/00_视频台账.md 视频 73+ 个 / 25.4GB 全量登记（未转写）
 research/            风格指纹 + 代表性原文样例（skill 的唯一风格依据）
 tools/               语料处理脚本（幂等可复跑）
 _work/盲测/          盲测写样与自评（验收证据）
