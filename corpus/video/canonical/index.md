@@ -1,4 +1,4 @@
-# 视频转写语料 · 索引（33 篇）
+# 视频转写语料 · 索引（35 篇）
 
 > ASR 原稿，错别字如实保留；说话人编号为听悟自动聚类，非真实身份。
 
@@ -30,10 +30,12 @@
 | 24 | v23-第四位嘉宾idoubi用-ShipAny-快速上线-AI-SaaS-网站---Web.Cafe | guest-talk | 18.7 | 7,004 |
 | 25 | v24-哥飞-出海AI工具站如何从零开始---Web.Cafe | gefei-talk | 82.0 | 24,037 |
 | 26 | v25-哥飞的朋友们2025年中分享会_xWT111 | event | 322.2 | 87,717 |
-| 27 | v27-If-you-really-want-to-open-a-shop-and-do-business-y | robin | 45.9 | 26,172 |
-| 28 | z-哥飞上站Hackathon活动启动，哥飞致辞---Web.Cafe | gefei-talk | 6.0 | 1,631 |
-| 29 | z-哥飞如何从零开始赚到第-1-美元，然后是第-1000-美元，再到月入万刀---Web.Cafe | gefei-talk | 59.2 | 17,136 |
-| 30 | z-哥飞带着大家做AI出海两年多，我的所见所闻所思所考---Web.Cafe | gefei-talk | 61.1 | 17,314 |
-| 31 | z-哥飞晚间分享2025.12.13晚直播---Web.Cafe | gefei-talk | 148.8 | 39,435 |
-| 32 | z-哥飞活动开场，哥飞致辞---Web.Cafe | gefei-talk | 13.7 | 4,090 |
-| 33 | z-哥飞过去两年我们验证过的一些有用-的AI-出海经验---Web.Cafe | gefei-talk | 18.3 | 5,568 |
+| 27 | v26a-两周年直播上半场 | gefei-talk | 105.6 | 27,687 |
+| 28 | v26b-两周年直播下半场 | gefei-talk | 109.8 | 22,980 |
+| 29 | v27-If-you-really-want-to-open-a-shop-and-do-business-y | robin | 45.9 | 26,172 |
+| 30 | z-哥飞上站Hackathon活动启动，哥飞致辞---Web.Cafe | gefei-talk | 6.0 | 1,631 |
+| 31 | z-哥飞如何从零开始赚到第-1-美元，然后是第-1000-美元，再到月入万刀---Web.Cafe | gefei-talk | 59.2 | 17,136 |
+| 32 | z-哥飞带着大家做AI出海两年多，我的所见所闻所思所考---Web.Cafe | gefei-talk | 61.1 | 17,314 |
+| 33 | z-哥飞晚间分享2025.12.13晚直播---Web.Cafe | gefei-talk | 148.8 | 39,435 |
+| 34 | z-哥飞活动开场，哥飞致辞---Web.Cafe | gefei-talk | 13.7 | 4,090 |
+| 35 | z-哥飞过去两年我们验证过的一些有用-的AI-出海经验---Web.Cafe | gefei-talk | 18.3 | 5,568 |
